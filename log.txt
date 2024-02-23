@@ -1,0 +1,20 @@
+-------------------------------------
+["What are you afraid of @HillaryClinton? If you can't answer questions from the press, why do we want you as POTUS", 'Hillary Clinton', 'Hillary Clinton', 'AGAINST', 'AGAINST', -1]
+-------------------------------------
+['Just laid down the law on abortion in my bioethics class. #Catholic', 'Legalization of Abortion', 'Legalization of Abortion', 'AGAINST', 'AGAINST', -1]
+-------------------------------------
+['The amount of hot takes coming from #LoveWins is the single most significant cause of . #ThanksObama #SemST', 'Atheism', 'Climate Change is a Real Concern', 'NONE', 'NONE', 0]
+-------------------------------------
+[".@Rod_McCallum You're 55yrs out-of-date. I thought you could be more interesting, but you're just old news, bored now. Bye #SemST", 'Atheism', 'Feminist Movement', 'NONE', 'NONE', 0]
+-------------------------------------
+["Congratulations to America for overcoming 1 battle for #equality. Now let's have women&all races treated equally #AllLivesMatter #SemST", 'Feminist Movement', 'Feminist Movement', 'FAVOR', 'FAVOR', 1]
+-------------------------------------
+["@Jeanelynn Thank you so much for the follow and the FAV, Jeane!!!  Gods' best to you! #WakeUpAmerica #SemST", 'Atheism', 'Hillary Clinton', 'FAVOR', 'NONE', 1]
+-------------------------------------
+['Is a Eric Holder making 7 figures in the financial industry he protected from prosecution, yet?  Why do Libs love 1%ers?  #SemST', 'Hillary Clinton', 'Hillary Clinton', 'NONE', 'AGAINST', -1]
+-------------------------------------
+['@oreillyfactor Who gives a rate ass what a Old Queen has to say about Clarence Thomas? #SemST', 'Hillary Clinton', 'Hillary Clinton', 'AGAINST', 'NONE', -2]
+-------------------------------------
+['@mikeboydprice @Jake_Witmer @ProLifeLiberty Where did we get that right? When did we get that right- at conception? #antichoice #SemST', 'Legalization of Abortion', 'Legalization of Abortion', 'AGAINST', 'AGAINST', -2]
+-------------------------------------
+["I'm gonna fuck @CaitlynGuyerXOX Next weekend  #SemST", 'Hillary Clinton', 'Legalization of Abortion', 'NONE', 'NONE', -2]
