@@ -65,7 +65,7 @@ class profile:
                     "role": "system",
                     "content": "In which debate category does the tweet below belong in? Following categories: "
                     + ", ".join(self.categories)
-                    + ". Answer only with the name of the category."
+                    + ". You must answer only with the full name of the category."
                     + unknown_allowed
                     + "  Here is the tweet: '"
                     + tweet
@@ -92,6 +92,7 @@ class profile:
             ],
         )
         answer = completion.choices[0].message.content
+        print("creating new category: ", answer)
         return answer
 
     def __init_profile__(self):
@@ -150,11 +151,11 @@ class profile:
             )
         self.write_log_to_file()
         print("Accuracy on categories: ", self.accuracy_targets() * 100, "%")
-        print("Accuracy on categories: ", self.accuracy_stances() * 100, "%")
+        print("Accuracy on stances: ", self.accuracy_stances() * 100, "%")
         return self.profile
 
 
-sample = loadData.sample_n_theme_from_csv(n=10).to_numpy()
+sample = loadData.sample_n_theme_from_csv(n=30).to_numpy()
 targets_label = loadData.all_targets()
 tweets = [row[0] for row in sample]
 true_targets = [row[1] for row in sample]
