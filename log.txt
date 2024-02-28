@@ -1,60 +1,30 @@
 -------------------------------------
-["CEO pay the target for 2016 election. From someone who makes more than most CEO's but you drank the Kool-Aid.", 'Hillary Clinton', 'Hillary Clinton', 'NONE', 'NONE', 0]
+['#mtp @meetthepress How is deleting emails -part of the government record -different from erasing parts of a tape? #nixon #p2 #SemST', 'Hillary Clinton', 'Hillary Clinton', 'NONE', 'AGAINST', [3, 2, 4]]
 -------------------------------------
-["Rise & Shine its a new day & you're alive. Thank God 4 another day of precious life. #Christian #Catholic #TeamJesus", 'Atheism', 'Legalization of Abortion', 'FAVOR', 'AGAINST', 1]
+['@JDSon78 @AndrewBroering AndrewWhyDoYouCareAboutWhatIThink? I DidNotRealizeThatIWasThisImportant. SirTweet AndrewIsAPaidTroll #SemST', 'Atheism', 'Hillary Clinton', 'NONE', 'AGAINST', [1, 0, 3]]
 -------------------------------------
-['1/5"And the heaven We created with might, and indeed We are (its) expander." (Quran (51:47) #SemST', 'Atheism', 'Atheism', 'FAVOR', 'AGAINST', 2]
+["@deeceejazz Do we really want to know what's under those pantsuits? Besides the black heart of evil. #SemST", 'Feminist Movement', 'Hillary Clinton', 'NONE', 'AGAINST', [1, 0, 2]]
 -------------------------------------
-['@davidpakmanshow @LiberalBias If hell existed, Bush would be first in line, "Christian" or not. Morality transcends religion. #SemST', 'Atheism', 'Atheism', 'FAVOR', 'FAVOR', 3]
+['If @HillaryClinton becomes president I\'m not leaving the country I will just go "undocumented. #SemST', 'Hillary Clinton', 'Hillary Clinton', 'FAVOR', 'AGAINST', [3, 2, 4]]
 -------------------------------------
-["I know why he has to do it. Given the audience and the events. But the God talk in President Obama's speech jars with me. A lot. #SemST", 'Atheism', 'Atheism', 'NONE', 'FAVOR', 3]
+['Hillary says people should and do trust her, phew wee I am glad she finally got that issue behind her. #SemST', 'Hillary Clinton', 'Hillary Clinton', 'FAVOR', 'AGAINST', [3, 2, 4]]
 -------------------------------------
-["If I get this one job in Charlotte I'll be good  #SemST", 'Hillary Clinton', 'Atheism', 'NONE', 'NONE', 0]
+['@stylistkavin Amazing how much they sound like Republicans! ; ) #ITrustHillary #SemST', 'Hillary Clinton', 'Hillary Clinton', 'FAVOR', 'FAVOR', [3, 2, 4]]
 -------------------------------------
-['I receive Your lovingkindness every morning -Ps. 143:8 #SemST', 'Atheism', 'Atheism', 'NONE', 'AGAINST', 3]
+['Tea Party Nation, Tea Party group listed by Southern Poverty Law Center as hate group. The Tea Party is The NEW Aryan Nations #SemST', 'Hillary Clinton', 'Hillary Clinton', 'AGAINST', 'NONE', [3, 2, 4]]
 -------------------------------------
-["Just got canvassed! Hope you'll join me in supporting @VPIRG this summer! #solar #peoplepower #SemST", 'Climate Change is a Real Concern', 'Climate Change is a Real Concern', 'FAVOR', 'FAVOR', 1]
+['@violencehurts @WomenCanSee The most fundamental right of them all, the right to life, is also a right of the unborn. #SemST', 'Legalization of Abortion', 'Legalization of Abortion', 'AGAINST', 'AGAINST', [1, 1, 1]]
 -------------------------------------
-['That awkward moment when a pro-coal PR campaign has over 100K more followers than you do: @AdvancedEnergy #greenwashing #SemST', 'Climate Change is a Real Concern', 'Climate Change is a Real Concern', 'AGAINST', 'FAVOR', 0]
+["AntiChoice laws say women can't make their own decisions  #SemST", 'Legalization of Abortion', 'Legalization of Abortion', 'FAVOR', 'AGAINST', [1, 1, 1]]
 -------------------------------------
-['@StarSThomas Dear god, you are fat. #SemST', 'Atheism', 'Feminist Movement', 'NONE', 'NONE', 3]
+['Remember, #God has it all worked out. #SemST', 'Atheism', 'Atheism', 'FAVOR', 'AGAINST', [1, 0, 3]]
 -------------------------------------
-["The moment you know you've won as a wife.  You put out and he gets up to make his own sandwich. #winning #yvrmoms #funny #joke #SemST", 'Feminist Movement', 'Feminist Movement', 'NONE', 'FAVOR', 0]
+['Hindus pay for Muslim subsidy for HAJ..but need security from Muslims to visit temples-Amarnath yatra..   #HindusUnderAttack #SemST', 'Hillary Clinton', 'Atheism', 'AGAINST', 'NONE', [3, 2, 4]]
 -------------------------------------
-['@equalforwomen why r u on twitter get back in the kitchen #feminist #feminazi #powertowomen #Equality #SemST', 'Feminist Movement', 'Feminist Movement', 'AGAINST', 'AGAINST', -1]
+['Paul Leadley Talking about #biodiversity scenarios under #h22 #CFCC15 #SemST', 'Climate Change is a Real Concern', 'Climate Change is a Real Concern', 'NONE', 'FAVOR', [1, 0, 2]]
 -------------------------------------
-['The meaning of peace is the absence of opposition to socialism. #GamerGate #SemST', 'Atheism', 'Feminist Movement', 'NONE', 'NONE', 3]
+["People need to wake up & realize what's happening to our earth  #hello #SemST", 'Climate Change is a Real Concern', 'Climate Change is a Real Concern', 'FAVOR', 'FAVOR', [1, 0, 2]]
 -------------------------------------
-['Old, insecure females forcing hatred of men on a younger generation of women #SemST', 'Feminist Movement', 'Feminist Movement', 'AGAINST', 'AGAINST', -2]
+["You are NOT a feminist if you are a racist. If you don't stand for all girls of every color, shape, size then u ain't a feminist #SemST", 'Feminist Movement', 'Feminist Movement', 'FAVOR', 'FAVOR', [1, 0, 2]]
 -------------------------------------
-["I get a lot of shit for saying boobs are sexual. I'm sorry you call me ignorant all you want but its true #freethenippple #boobs #SemST", 'Feminist Movement', 'Feminist Movement', 'FAVOR', 'AGAINST', -1]
--------------------------------------
-['The fact that Chris Brown is somehow still famous is why I need #SemST', 'Feminist Movement', 'Feminist Movement', 'NONE', 'NONE', -1]
--------------------------------------
-["Don't get it twisted. A major presidential candidate using her first policy speech to talk about mass incarcertaion. #SemST", 'Hillary Clinton', 'Hillary Clinton', 'FAVOR', 'AGAINST', 1]
--------------------------------------
-['@SCOTUS_Scalia Right. Words no longer have meaning. Like Clintons,"It depends on what the meaning of \'is\' is." More if we don\'t #SemST', 'Hillary Clinton', 'Hillary Clinton', 'AGAINST', 'AGAINST', 0]
--------------------------------------
-['@TIMENOUT Is there anything about the Clintons that is not fraudulent? #SemST', 'Hillary Clinton', 'Hillary Clinton', 'AGAINST', 'AGAINST', -1]
--------------------------------------
-['The owner of Univisin, donated as much as $25 million to the Clinton Foundation, his wife sits on its board #Univision #Trump #SemST', 'Hillary Clinton', 'Hillary Clinton', 'FAVOR', 'AGAINST', 0]
--------------------------------------
-['@anthonyweiner super out of touch and stupid.   Please go away. #NYCPride #NYC #SemST', 'Hillary Clinton', 'Hillary Clinton', 'AGAINST', 'AGAINST', -1]
--------------------------------------
-['RT @ProLifeYouth: "It seems to me clear as daylight that abortion would be a crime." -Ghandi  #ProLifeYouth #SemST', 'Legalization of Abortion', 'Legalization of Abortion', 'AGAINST', 'AGAINST', -1]
--------------------------------------
-['@explicit0ceans But adoption chooses to let them live. Obviously a huge difference. You can see that, right?  #Adoption #SemST', 'Legalization of Abortion', 'Legalization of Abortion', 'FAVOR', 'AGAINST', 0]
--------------------------------------
-['RT @Singerman2000: Government  has exceeded its necessary size, scope and reach into the lives of its citizens. #Armenia... #SemST', 'Legalization of Abortion', 'Legalization of Abortion', 'NONE', 'NONE', 0]
--------------------------------------
-['Hey, #BristolPalin, when Alaska asked you to promote "wide open spaces," pretty sure they were talking about the state. #SemST', 'Feminist Movement', 'Legalization of Abortion', 'FAVOR', 'NONE', 0]
--------------------------------------
-['Gets rid of a daughter and pretends she never existed. #ParentTrapPlot or #SemST', 'Legalization of Abortion', 'Legalization of Abortion', 'NONE', 'AGAINST', 0]
--------------------------------------
-['Demand the Senate vote to ban painful late-term abortions. Use your voice to help hold the Senate accountable. #bluemoon #SemST', 'Legalization of Abortion', 'Legalization of Abortion', 'AGAINST', 'AGAINST', -1]
--------------------------------------
-["If being in a mother's womb isn't safe I guess neither are churches; specifically black ones #WhoIsBurningBlackChurches #SemST", 'Hillary Clinton', 'Legalization of Abortion', 'NONE', 'AGAINST', -1]
--------------------------------------
-['@notmuchelse And the unborn ARE human lives completely human & alive from conception. Abortion KILLS #SemST', 'Legalization of Abortion', 'Legalization of Abortion', 'AGAINST', 'AGAINST', -2]
--------------------------------------
-['@ghhshirley Abortion Workers Charged with Manslaughter After Another Woman Dies From #SemST', 'Legalization of Abortion', 'Legalization of Abortion', 'NONE', 'AGAINST', -2]
+["@Deb_Hitchens @JudgeBambi . There's no capacity for discourse when you assume ppl are your enemy. Hate. Misery. Paranoia. A waste. #SemST", 'Atheism', 'Feminist Movement', 'NONE', 'NONE', [1, 0, 3]]

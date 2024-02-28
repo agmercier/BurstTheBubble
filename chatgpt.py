@@ -1,17 +1,7 @@
 from openai import OpenAI
 import loadData
 
-client = OpenAI(api_key="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")
-
-
-# tweets = [
-#     "It's so brilliant that #lovewins - now extend the equality to women's rights #abortionrights.",
-#     "Abortion is murder, don't kill you child",
-#     "AI steals all art. Should not be allowed to train without paying the artists",
-#     "AI does not need to pay artists, it is just taking inspiration from their art, nothing else",
-#     "Climate change is real and coming for us all",
-#     "Climate change is not real, its is just a hoax",
-# ]
+client = OpenAI(api_key="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")
 
 
 class profile:
@@ -23,9 +13,12 @@ class profile:
         self.new_cat = new_cat
         self.log = []
         self.choices = ["'in-favor'", "'against'", "'neutral-or-unclear'"]
+        self.true_profile = {}
         self.profile = {}
         self.true_targets = true_targets
         self.true_stances = true_stances
+        self.bias = {"in-favor": [], "against": []}
+        self.true_bias = {"in-favor": [], "against": []}
         self.__init_profile__()
 
     def stance_detection(self, tweet, category):
@@ -83,7 +76,10 @@ class profile:
             messages=[
                 {
                     "role": "system",
-                    "content": "Create a highly descriptive category name for the debate the tweet below is talking about. Include the relevant important terms. Answer only with the category name."
+                    "content": "Create a descriptive category name for the debate that the tweet below is talking about. Include the relevant important terms. Answer only with the category name."
+                    + "Use the same format as these examples: Pro marijuana legalisation, Against total freedom of expression, Against Vegan movement, Pro European Union, Against Government funded propaganda"
+                    + " Make the new name is distinct from the following categories: "
+                    + ", ".join(self.categories)
                     + "Here is the tweet: '"
                     + tweet
                     + "' The category of the tweet is: ",
@@ -97,7 +93,16 @@ class profile:
 
     def __init_profile__(self):
         for cat in self.categories:
-            self.profile[cat] = 0
+            self.profile[cat] = [0, 0, 0]
+            self.true_profile[cat] = [0, 0, 0]
+
+    def update_profile(self, category, ans):
+        if ans == "FAVOR":
+            self.profile[category][0] = self.profile[category][0] + 1
+        if ans == "AGAINST":
+            self.profile[category][1] = self.profile[category][1] + 1
+        else:
+            self.profile[category][2] = self.profile[category][2] + 1
 
     def write_log_to_file(self, fileName="log.txt"):
         with open(file=fileName, mode="w") as file_obj:
@@ -127,18 +132,95 @@ class profile:
         else:
             print("need stances")
 
+    def find_bias(self):
+        for cat in self.categories:
+
+            num_favor = self.profile[cat][0]
+            num_against = self.profile[cat][1]
+            if num_favor == 0 and num_against == 0:
+                print("bias: no tweets in that category")
+                return self.bias
+            elif num_favor == 0:
+                print("bias: only tweets against")
+                self.bias["against"].append(cat)
+                return self.bias
+            elif num_against == 0:
+                print("bias: only tweets in favor")
+                self.bias["in-favor"].append(cat)
+                return self.bias
+            ratio = num_favor / num_against
+            if ratio >= 2:
+                print(
+                    "Careful, you might have a bias for 'in favor' of category: ",
+                    cat,
+                    ". The calulated ratio was: ",
+                    ratio,
+                )
+                self.bias["in-favor"].append(cat)
+
+            if ratio <= 0.5:
+                print(
+                    "Careful, you might have a bias for 'agaisnt' of category: ",
+                    cat,
+                    ". The calulated ratio was: ",
+                    ratio,
+                )
+                self.bias["against"].append(cat)
+
+    def find_true_bias(self):
+        for idx, (category, stance) in enumerate(
+            zip(self.true_targets, self.true_stances)
+        ):
+            if stance == "FAVOR":
+                self.true_profile[category][0] = self.true_profile[category][0] + 1
+            if stance == "AGAINST":
+                self.true_profile[category][1] = self.true_profile[category][1] + 1
+            else:
+                self.true_profile[category][2] = self.true_profile[category][2] + 1
+
+        for cat in self.categories:
+            num_favor = self.true_profile[cat][0]
+            num_against = self.true_profile[cat][1]
+            if num_favor == 0 and num_against == 0:
+                print("true bias: no tweets in that category")
+                return self.bias
+            elif num_favor == 0:
+                print("true bias: only tweets against")
+                self.bias["against"].append(cat)
+                return self.bias
+            elif num_against == 0:
+                print("true bias: only tweets in favor")
+                self.bias["in-favor"].append(cat)
+                return self.bias
+            ratio = num_favor / num_against
+            if ratio >= 2:
+                print(
+                    "True Profile: ",
+                    cat,
+                    ". The calulated ratio was: ",
+                    ratio,
+                )
+                self.true_bias["in-favor"].append(cat)
+
+            elif ratio <= 0.5:
+                print(
+                    "True Profile: ",
+                    cat,
+                    ". The calulated ratio was: ",
+                    ratio,
+                )
+                self.true_bias["against"].append(cat)
+            return self.true_bias
+
     def run(self):
         for idx, tweet in enumerate(self.tweets):
             category = self.inCategories(tweet)
-            if category == "Unknown":
+            if self.categories == [] or category == "Unknown":
                 category = self.createCategory(tweet)
                 self.categories.append(category)
-                self.profile[category] = 0
+                self.profile[category] = [0, 0, 0]
             ans = self.stance_detection(tweet, category)
-            if ans == "FAVOR":
-                self.profile[category] = self.profile[category] + 1
-            if ans == "AGAINST":
-                self.profile[category] = self.profile[category] - 1
+            self.update_profile(category, ans)
             self.log.append(
                 [
                     tweet,
@@ -152,22 +234,66 @@ class profile:
         self.write_log_to_file()
         print("Accuracy on categories: ", self.accuracy_targets() * 100, "%")
         print("Accuracy on stances: ", self.accuracy_stances() * 100, "%")
-        return self.profile
+        self.find_bias()
+        self.find_true_bias()
+        return self.bias, self.true_bias, self.profile, self.true_profile
 
 
-sample = loadData.sample_n_theme_from_csv(n=30).to_numpy()
+sample = loadData.sample_n_theme_from_csv(n=100)
 targets_label = loadData.all_targets()
 tweets = [row[0] for row in sample]
 true_targets = [row[1] for row in sample]
 true_stances = [row[2] for row in sample]
 # print("tweets: ", tweets)
 
-profile = profile(
-    tweets=tweets,
-    categories=targets_label,
-    new_cat=False,
-    true_targets=true_targets,
-    true_stances=true_stances,
+# profile = profile(
+#     tweets=tweets,
+#     categories=targets_label,
+#     new_cat=False,
+#     true_targets=true_targets,
+#     true_stances=true_stances,
+# )
+# res = profile.run()
+# print(res)
+
+# profile = profile(
+#     tweets=tweets,
+#     new_cat=True,
+#     true_targets=true_targets,
+#     true_stances=true_stances,
+# )
+# res = profile.run()
+# print(res)
+
+# stance detection with true categories:
+# correct = 0
+# for idx, tweet in enumerate(tweets):
+#     stance = profile.stance_detection(tweet, true_targets[idx])
+#     if stance == true_stances[idx]:
+#         correct = correct + 1
+# average = correct / len(true_stances)
+# print("stance detection with true categories: ", average * 100, "%")
+
+profiles = loadData.biased_profiles(
+    n=1, n_per_cat=2, n_bias=5, n_nonbias=1, n_neutral=1
 )
-res = profile.run()
-print(res)
+for prof in profiles:
+    targets_label = loadData.all_targets()
+    tweets = [row[0] for row in prof]
+    true_targets = [row[1] for row in prof]
+    true_stances = [row[2] for row in prof]
+
+    profile_instance = profile(
+        tweets=tweets,
+        categories=targets_label,
+        new_cat=False,
+        true_targets=true_targets,
+        true_stances=true_stances,
+    )
+    bias, true_bias, prof, true_prof = profile_instance.run()
+    print("------------------")
+    print("Bias: ", bias)
+    print("True Bias: ", bias)
+    print("Profile: ", prof)
+    print("True Profile: ", true_prof)
+    print("------------------")
