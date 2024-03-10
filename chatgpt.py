@@ -1,9 +1,15 @@
 from openai import OpenAI
 import loadData
+from tqdm import tqdm
+import os
 
-client = OpenAI(api_key="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")
+# This code requires an openai api key to run
+# To use your secret key create a .env file and add the following line:
+# OPENAI_API_KEY= Your Secret Key Here
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 
+# Class that holds all modules for bias detection
 class profile:
     def __init__(
         self, tweets, categories=[], new_cat=False, true_targets=[], true_stances=[]
@@ -21,6 +27,7 @@ class profile:
         self.true_bias = {"in-favor": [], "against": []}
         self.__init_profile__()
 
+    # prompt GPT to detect the stance of a tweet
     def stance_detection(self, tweet, category):
         completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
@@ -46,8 +53,10 @@ class profile:
         answer = completion.choices[0].message.content
         return answer
 
+    # prompt  GPT to detect in which category the tweet belongs in
     def inCategories(self, tweet):
         unknown_allowed = ""
+        # release this prompt if want to allow for the system to create new categories
         if self.new_cat:
             unknown_allowed = " if the tweet does not fit in any of the above categories answer with 'Unknown'"
         completion = client.chat.completions.create(
@@ -58,7 +67,7 @@ class profile:
                     "role": "system",
                     "content": "In which debate category does the tweet below belong in? Following categories: "
                     + ", ".join(self.categories)
-                    + ". You must answer only with the full name of the category."
+                    + ". You must answer only with the full name of one of the categories above."
                     + unknown_allowed
                     + "  Here is the tweet: '"
                     + tweet
@@ -69,6 +78,7 @@ class profile:
         answer = completion.choices[0].message.content
         return answer
 
+    # Generate the name for a new  category
     def createCategory(self, tweet):
         completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
@@ -91,11 +101,13 @@ class profile:
         print("creating new category: ", answer)
         return answer
 
+    # Add predefined cateogories to profile
     def __init_profile__(self):
         for cat in self.categories:
             self.profile[cat] = [0, 0, 0]
             self.true_profile[cat] = [0, 0, 0]
 
+    # update profile with the answer of GPT
     def update_profile(self, category, ans):
         if ans == "FAVOR":
             self.profile[category][0] = self.profile[category][0] + 1
@@ -104,12 +116,14 @@ class profile:
         else:
             self.profile[category][2] = self.profile[category][2] + 1
 
+    # Write log history to file
     def write_log_to_file(self, fileName="log.txt"):
         with open(file=fileName, mode="w") as file_obj:
             for lines in self.log:
                 file_obj.writelines("-------------------------------------\n")
                 file_obj.writelines(str(lines) + "\n")
 
+    # calculate the acuracy of the model on detecting the correct category for tweets
     def accuracy_targets(self):
         if not self.true_targets == []:
             correct = 0
@@ -121,6 +135,7 @@ class profile:
         else:
             print("need targets")
 
+    # calculate the acuracy of the model on detecting the correct stancea for tweets
     def accuracy_stances(self):
         if not self.true_stances == []:
             correct = 0
@@ -132,6 +147,8 @@ class profile:
         else:
             print("need stances")
 
+    # Go through profile and detected stances and categories
+    # aggragate to see if one category manifest a lot of bias towards one stance
     def find_bias(self):
         for cat in self.categories:
 
@@ -167,6 +184,8 @@ class profile:
                 )
                 self.bias["against"].append(cat)
 
+    # Same as find_bias() but uses true stances
+    # this gives the true accuracy based on the labels of the dataset
     def find_true_bias(self):
         for idx, (category, stance) in enumerate(
             zip(self.true_targets, self.true_stances)
@@ -212,9 +231,11 @@ class profile:
                 self.true_bias["against"].append(cat)
             return self.true_bias
 
+    # run the model pipeline on all the given tweets
     def run(self):
-        for idx, tweet in enumerate(self.tweets):
+        for idx, tweet in tqdm(enumerate(self.tweets)):
             category = self.inCategories(tweet)
+            #  If GPT decides tweet does not fit one of the given categories, create a new one and add it to the list of possible categories
             if self.categories == [] or category == "Unknown":
                 category = self.createCategory(tweet)
                 self.categories.append(category)
@@ -239,22 +260,23 @@ class profile:
         return self.bias, self.true_bias, self.profile, self.true_profile
 
 
-sample = loadData.sample_n_theme_from_csv(n=100)
+# load in tweets and labels
+sample = loadData.sample_n_theme_from_csv(n=10)
 targets_label = loadData.all_targets()
 tweets = [row[0] for row in sample]
 true_targets = [row[1] for row in sample]
 true_stances = [row[2] for row in sample]
 # print("tweets: ", tweets)
 
-# profile = profile(
-#     tweets=tweets,
-#     categories=targets_label,
-#     new_cat=False,
-#     true_targets=true_targets,
-#     true_stances=true_stances,
-# )
-# res = profile.run()
-# print(res)
+profile = profile(
+    tweets=tweets,
+    categories=targets_label,
+    new_cat=False,
+    true_targets=true_targets,
+    true_stances=true_stances,
+)
+res = profile.run()
+print(res)
 
 # profile = profile(
 #     tweets=tweets,
@@ -274,26 +296,29 @@ true_stances = [row[2] for row in sample]
 # average = correct / len(true_stances)
 # print("stance detection with true categories: ", average * 100, "%")
 
-profiles = loadData.biased_profiles(
-    n=1, n_per_cat=2, n_bias=5, n_nonbias=1, n_neutral=1
-)
-for prof in profiles:
-    targets_label = loadData.all_targets()
-    tweets = [row[0] for row in prof]
-    true_targets = [row[1] for row in prof]
-    true_stances = [row[2] for row in prof]
+## ---- Test bias detection in profiles ----
 
-    profile_instance = profile(
-        tweets=tweets,
-        categories=targets_label,
-        new_cat=False,
-        true_targets=true_targets,
-        true_stances=true_stances,
-    )
-    bias, true_bias, prof, true_prof = profile_instance.run()
-    print("------------------")
-    print("Bias: ", bias)
-    print("True Bias: ", bias)
-    print("Profile: ", prof)
-    print("True Profile: ", true_prof)
-    print("------------------")
+# profiles = loadData.biased_profiles(
+#     n=1, n_per_cat=10, n_bias=15, n_nonbias=5, n_neutral=5
+# )
+# for prof in profiles:
+#     targets_label = loadData.all_targets()
+#     print(targets_label)
+#     tweets = [row[0] for row in prof]
+#     true_targets = [row[1] for row in prof]
+#     true_stances = [row[2] for row in prof]
+
+#     profile_instance = profile(
+#         tweets=tweets,
+#         categories=targets_label,
+#         new_cat=False,
+#         true_targets=true_targets,
+#         true_stances=true_stances,
+#     )
+#     bias, true_bias, prof, true_prof = profile_instance.run()
+#     print("------------------")
+#     print("Bias: ", bias)
+#     print("True Bias: ", bias)
+#     print("Profile: ", prof)
+#     print("True Profile: ", true_prof)
+#     print("------------------")
